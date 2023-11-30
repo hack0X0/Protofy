@@ -185,13 +185,8 @@ const FormGroup = ({ ele, title, children, icon, simple = false }) => {
 const getElement = (ele, icon, i, x, data, setData, mode, customFields = {}, path = [], inArray?, arrayName?) => {
   let elementDef = ele._def?.innerType?._def ?? ele._def
   const setFormData = (key, value) => {
-    console.log('set form data: ', key, value, path);
-    console.log('before: ', data);
-
     const formData = data;
-    console.log('setformData', data)
     let target = formData;
-
     let prevTarget;
     let prevKey;
 
@@ -204,9 +199,7 @@ const getElement = (ele, icon, i, x, data, setData, mode, customFields = {}, pat
       target = target[p];
     });
 
-    console.log('prev target: ', prevTarget)
     target[key] = value;
-    console.log('after: ', formData);
     setData({ data: formData });
   }
 
@@ -313,8 +306,8 @@ const getElement = (ele, icon, i, x, data, setData, mode, customFields = {}, pat
     return <FormGroup simple={true} ele={ele} title={inArray ? (ele._def.keyName ? getFormData(ele._def.keyName, [...path, ele.name]) : arrayName + ' #' + (ele.name + 1)) : ele.name} icon={List}>
       <Stack>
         {/* <Stack alignSelf="flex-start" backgroundColor={"$background"} px="$2" left={10} pos="absolute" top={-13}><SizableText >{typeof ele.name === "number"? '': ele.name}</SizableText></Stack> */}
-        {Object.keys(ele._def.shape()).map((s, i) => {
-          const shape = ele._def.shape();
+        {Object.keys(elementDef.shape()).map((s, i) => {
+          const shape = elementDef.shape();
           return <Stack key={i} mt={i ? "$5" : "$0"}>{getElement({ ...shape[s], name: s }, icon, 0, 0, data, setData, mode, customFields, [...path, ele.name])}</Stack>
         })}
       </Stack>
@@ -414,7 +407,6 @@ export const EditableObject = ({ EditIconNearTitle = false, autoWidth = false, c
   useUpdateEffect(() => setCurrentMode(mode), [mode])
 
   useUpdateEffect(() => {
-    console.log('data updated', data)
     if (ready) {
       setEdited(true)
     } else {

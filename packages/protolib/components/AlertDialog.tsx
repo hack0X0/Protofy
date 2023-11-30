@@ -43,14 +43,14 @@ export const AlertDialog = forwardRef(({
     }, [status])
     const openState = open !== undefined ? open : _open
     return (<Dialog ref={ref} open={openState} onOpenChange={setOpen !== undefined ? setOpen : _setOpen}>
-        <Dialog.Trigger>
+        {trigger && <Dialog.Trigger>
             {trigger}
-        </Dialog.Trigger>
+        </Dialog.Trigger>}
         <Dialog.Portal >
             <Dialog.Overlay />
             <Dialog.Content scale={1} p="$7" ai="flex-start" jc="flex-start" {...props}>
                 {integratedChat && openState && <Tinted>
-                    <Chat tags={['doc', title]} zIndex={999999999} onScreen={openState} />
+                    <Chat tags={['doc', title]} zIndex={999999999} onScreen={openState} mode="popup"/>
                 </Tinted> }
                 <YStack f={1} width={"100%"}>
                     <YStack f={1}>

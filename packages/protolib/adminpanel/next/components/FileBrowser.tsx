@@ -1,6 +1,7 @@
 
 import { YStack } from '@tamagui/stacks';
 import { AlertDialog, Button, Dialog, XStack } from '@my/ui';
+import { AlertDialog as ProtoAlertDialog } from '../../../components/AlertDialog';
 import { useThemeSetting } from '@tamagui/next-theme'
 import { FileWidget } from '../../features/components/FilesWidget';
 import { IconContainer } from '../../../components/IconContainer';
@@ -11,6 +12,8 @@ import { useEffect, useState } from 'react';
 import { Explorer } from './Explorer';
 import { defineFileAction } from 'chonky';
 import FileActions from 'app/bundles/fileActions'
+import {Tinted} from '../../../components/Tinted'
+import Chat from '../../features/next/chat'
 
 
 export const FileBrowser = ({ file, path, filesState }: any) => {
@@ -91,11 +94,13 @@ export const FileBrowser = ({ file, path, filesState }: any) => {
                     <Dialog.Overlay />
                     <Dialog.Content p={0} backgroundColor={resolvedTheme == 'dark' ? "#1e1e1e" : 'white'} height={'90%'} width={"90%"} >
                         {getWidget()}
+                        <Tinted>
+                            <Chat tags={['doc', "files"]} zIndex={999999999} onScreen={dialogOpen} mode="popup" />
+                        </Tinted>
                         <Dialog.Close />
                     </Dialog.Content>
                 </Dialog.Portal>
 
-                {/* optionally change to sheet when small screen */}
                 <Dialog.Adapt when="sm">
                     <Dialog.Sheet>
                         <Dialog.Sheet.Frame>
@@ -105,6 +110,7 @@ export const FileBrowser = ({ file, path, filesState }: any) => {
                     </Dialog.Sheet>
                 </Dialog.Adapt>
             </Dialog>
+
             <AlertDialog open={openAlert} onOpenChange={setOpenAlert} native>
                 <AlertDialog.Portal>
                     <AlertDialog.Overlay

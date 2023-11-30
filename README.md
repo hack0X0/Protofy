@@ -70,7 +70,18 @@ The project has two main folders:
 You can add other folders inside of `packages/` if you know what you're doing and have a good reason to.
 
 ## 🚀 Getting Started
+https://github.com/Protofy-xyz/Protofy/assets/99766455/930e5eb5-abab-4956-8ae2-31f0c284aa31
+
 First steps? Check the [getting started](docs/getting-started.md) guide.
+
+## 📚 Documentation
+You already know the basics? Check these amazing docs to learn more:
+
+- [Getting Started](docs/getting-started.md)
+- [Workspace, What is?](docs/workspace.md)
+- [Protofy packages](docs/packages.md)
+  - [Protolib](docs/protolib.md)
+- [Extending Protofy](docs/extending-protofy.md)
 
 ## 🧭 Roadmap
 Comming soon...
@@ -86,3 +97,5 @@ The first point of call should be our [Discord]("https://discord.gg/VpeZxMFfYW")
 
 ## 🙏 Credits and References
 Many thanks [@natew](https://twitter.com/natebirdman) for creating the original starter and to [@FernandoTheRojo](https://twitter.com/fernandotherojo) for the Solito starter monorepo which the original [@natew](https://twitter.com/natebirdman) starter was forked from. Check out Fernando Rojo his [talk about using expo + next together at Next.js Conf 2021](https://www.youtube.com/watch?v=0lnbdRweJtA).
+
+ Many thanks also to [@OttoWinter](https://github.com/OttoWinter) for creating [ESPHome](https://github.com/esphome) project.

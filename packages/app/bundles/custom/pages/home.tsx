@@ -144,7 +144,6 @@ const Home = () => {
           </ContainerLarge>
         </TintSection>
 
-
         <Section>
           <SpotLight />
           <BackgroundGradient height={'100vh'} direction="up" o={0.1} />
@@ -196,8 +195,6 @@ const Home = () => {
             </YStack>
           </ContainerLarge>
         </TintSection>
-
-
 
         {/* <img src="/images/iot.png" /> */}
         <Section pt={"$15"} borderTopWidth={1} borderColor={"$color3"}>

@@ -160,8 +160,12 @@ export default class Source {
             const attrKey = this.getAttributeKey(jsxAtr)
             const attrValue = this.getAttributeValue(jsxAtr)
             const { value, nodeKind } = this.nodeValueFactory(attrValue)
-            props = { ...props, [attrKey]: value }
-            custom = { ...custom, [attrKey]: nodeKind }
+            if (value && attrKey) {
+                props = { ...props, [attrKey]: value }
+            }
+            if (nodeKind && attrKey) {
+                custom = { ...custom, [attrKey]: nodeKind }
+            }
         })
         // GET JsxText Children
         const jsxText = this.getJsxTextOfJsxElement(node)
@@ -185,7 +189,9 @@ export default class Source {
     }
 
     static flatten(node: any, tree, parent: any): any {
-        if (!node || (!this.isKind(node, 'JsxElement') && !this.isKind(node, 'JsxSelfClosingElement'))) throw "Can't provide flatten to node that has not JsxElement or JsxSelfClosingElement kind"
+        if (!node || (!this.isKind(node, 'JsxElement') && !this.isKind(node, 'JsxSelfClosingElement'))) {
+            return // throw "Can't provide flatten to node that has not JsxElement or JsxSelfClosingElement kind"
+        }
         const uuid = Source.getIdentifier(node) ?? this.getIdFromSourceCode(node)
         const nodeData = this.getNodeData(node)
         let nodes: any[] = []
@@ -449,15 +455,21 @@ export default class Source {
     }
 
     convertJsxExpressionToJsxElement(): Source {
-        const content = this.getContent()
-        let allJsxElements = Source.getAllJsxElements(content)
-        for (let i = 0; i < allJsxElements.length; i++) {
-            if (Source.isKind(allJsxElements[i], 'JsxExpression')) {
-                const reactCode = `<ReactCode codeBlock="${allJsxElements[i].getText()}"/>`
-                this.ast.replaceText([allJsxElements[i].getPos(), allJsxElements[i].getEnd()], reactCode);
-                allJsxElements = Source.getAllJsxElements(content)
+        const getCurrentJsxExpressions = () => {
+            const content = this.getContent()
+            let allJsxElements = Source.getAllJsxElements(content)
+            let currentJsxExpressions = allJsxElements.filter(ele => ele.getKindName() == "JsxExpression")
+            return currentJsxExpressions
+        }
+        const convertText = (initExpress) => {
+            if (initExpress.length) {
+                // NOTE: ReactCode is disabled until we figure out how to show them to users (to enable change '' for reactCode const).
+                // const reactCode = `<ReactCode codeBlock="${allJsxElements[i].getText()}"/>`
+                this.ast.replaceText([initExpress[0].getPos(), initExpress[0].getEnd()], '');
+                convertText(getCurrentJsxExpressions())
             }
         }
+        convertText(getCurrentJsxExpressions())
         return this
     }
 
