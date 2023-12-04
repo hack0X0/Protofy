@@ -1,7 +1,17 @@
 services:
   api:
+    depends_on: 
+      - admin-api
     container_name: 'api'
     image: "protofy/workspace"
     entrypoint: "yarn api-prod"
+    environment:
+      - MQTT_URL=mqtt://admin-api:8883
+      - API_URL=http://proxy:8000
+      - NODE_ENV=production
     volumes:
-      - ./data:/workspace/data
+      - ../../:/workspace
+      - protofy_modules:/workspace/node_modules
+volumes:
+  protofy_modules:
+    external: true

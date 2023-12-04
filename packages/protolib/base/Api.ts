@@ -1,17 +1,10 @@
-import { PendingAtomResult, getPendingResult } from "./createApiAtom";
+import { PendingResult, getPendingResult } from "../base/PendingResult";
+import {devMode} from './env'
 
-const SERVER = process?.env?.API_URL ?? 'http://localhost:8080'
+export const getApiUrl = () => process?.env?.API_URL ?? (devMode?'http://localhost:8080':'http://localhost:8000')
 
-class ApiError extends Error {
-    apiError: any;
-
-    constructor(message: string, { data }: { data: any }) {
-        super(message);
-        this.apiError = data
-    }
-}
-
-const _fetch = async (urlOrData, data?, update?, plain?):Promise<PendingAtomResult | undefined> => {
+const _fetch = async (urlOrData, data?, update?, plain?):Promise<PendingResult | undefined> => {
+    const SERVER = getApiUrl()
     let realUrl;
 
     if (typeof urlOrData === 'string') {
@@ -82,7 +75,7 @@ const _fetch = async (urlOrData, data?, update?, plain?):Promise<PendingAtomResu
 export const API = {
     fetch: _fetch,
     //@ts-ignore
-    get: (url, update?, plain?):Promise<PendingAtomResult> => _fetch(url, null, update, plain),
+    get: (url, update?, plain?):Promise<PendingResult> => _fetch(url, null, update, plain),
     //@ts-ignore
-    post: (url, data, update?, plain?):Promise<PendingAtomResult> => _fetch(url, data, update, plain)
+    post: (url, data, update?, plain?):Promise<PendingResult> => _fetch(url, data, update, plain)
 }

@@ -4,7 +4,7 @@ import { GroupModel } from '.'
 import { z } from 'protolib/base'
 import { DataTable2, Chip, DataView } from 'protolib'
 import { Users } from '@tamagui/lucide-icons';
-import { API } from '../../lib/Api'
+import { API } from '../../base/Api'
 import { usePrompt } from '../../context/PromptAtom'
 const GroupIcons = {}
 
@@ -31,7 +31,7 @@ export default {
             workspaces: z.array(z.union([
               z.literal(""),
               z.literal("")
-            ])).generateOptions(() => extraData.workspaces.map(o => o)).after('name').display(),
+            ])).generateOptions(() => extraData.workspaces.map(o => o)).after('name'),
           }}
           columns={DataTable2.columns(
             DataTable2.column("name", "name", true, undefined, true, '250px'),

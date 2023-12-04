@@ -12,9 +12,6 @@
   <a href="https://discord.gg/VpeZxMFfYW">
     <img src="https://img.shields.io/badge/discord-7289da.svg?style=flat&logo=discord" alt="discord" style="height: 20px;">
   </a>
-  <a href="https://www.youtube.com/channel/UCmA8ZqKbySDRSVFPBrAAQ-g">
-    <img src="https://img.shields.io/badge/youtube-d95652.svg?style=flat&logo=youtube" alt="youtube" style="height: 20px;">
-  </a>
 </h4>
 
 <p align="center">AI Supercharged LowCode Platform CMS and Framework</p>
@@ -30,9 +27,29 @@ You can think of **Protofy** as a Wordpress but based in **react** and **javascr
 
 A ultra-extensible CMS with supercharged capabilities, mobile support and IoT support (esp32 thanks to esphome).
 
-## 📦 Included packages
+## 👨‍💻 Extentable and developer friendly CMS
+
+https://github.com/Protofy-xyz/Protofy/assets/5052882/e5c3f0fa-5b76-4c8e-bb4f-6a2c588ec53c
+
+## 🤖 Ai Assisted
+
+https://github.com/Protofy-xyz/Protofy/assets/5052882/4b7da628-a55e-4904-81c3-6aca23eb776d
+
+Get help and code from integrated ChatGPT with autmatic context transfer
+
+## 😎 Realtime interactive diagrams that edit Javascript / Typescript code
+
+![codeedit](https://github.com/Protofy-xyz/Protofy/assets/5052882/98c071cf-c934-4891-90e7-ad2d05602aad)
+
+Edit any Javascript or typescript code using visual programming or traditional code
+
+## 🧰 Connected devices (IoT) support for ESP32 based on ESPHome 
 
 ![devices-package](https://github.com/Protofy-xyz/Protofy/blob/assets/device/device-1.gif?raw=true)
+
+Program, deploy and manage connected devices and IoT networks visually, in minutes. 
+
+## 📦 Included packages
 
 - `Protoflow` LowCode interactive diagram system for Javascript and Typescript
 - `VisualUI` What you see is what you get (wysiwyg) for react, like FlutterFlow but for react
